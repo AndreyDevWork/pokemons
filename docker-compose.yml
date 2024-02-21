@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+    nginx:
+        image: nginx:alpine
+        container_name: nginx-pokemons
+        ports:
+            - "${NGINX_HOST_PORT}"
+        volumes:
+            - ./src:/var/www
+            - ./nginx/conf.d/:/etc/nginx/conf.d/
+        depends_on:
+            - app
+            - db
+
+    db:
+        image: postgres
+        container_name: postgres-pokemons
+        volumes:
+            - ./postgresql/data:/var/lib/postgresql/data
+        ports:
+            - "${POSTGRES_HOST_PORT}"
+        environment:
+            POSTGRES_DB: "${POSTGRES_DB}"
+            POSTGRES_USER: "${POSTGRES_USER}"
+            POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+
+    app:
+        container_name: pokemons
+        build:
+            context: ./php
+            dockerfile: Dockerfile
+        volumes:
+            - ./src:/var/www
+        ports:
+            - "${APP_HOST_PORT}"
+        working_dir: /var/www
+
+    pgadmin:
+        image: dpage/pgadmin4
+        container_name: pg-admin-pokemons
+        ports:
+            - "${PGADMIN_HOST_PORT}"
+        depends_on:
+            - db
+        environment:
+            PGADMIN_DEFAULT_EMAIL: "${PGADMIN_DEFAULT_EMAIL}"
+            PGADMIN_DEFAULT_PASSWORD: "${PGADMIN_DEFAULT_PASSWORD}"
