@@ -1,4 +1,4 @@
-<h1 align="center">Setup-Project Dockerized</h1>
+<h1 align="center">Pokemons</h1>
 
 ## Development Setup
 
