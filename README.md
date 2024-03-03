@@ -2,7 +2,8 @@
 
 ## Development Setup
 
-- Install [Docker](https://www.docker.com/) by following the installation [instructions](https://www.docker.com/get-started/)
+- Install [Docker](https://www.docker.com/) by following the
+  installation [instructions](https://www.docker.com/get-started/)
 
 ### Setting Up a Project
 
@@ -26,3 +27,4 @@
 - PostgreSQL
 - pgAdmin:
 - elasticsearch
+- Redis
