@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Auth;
+namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use OpenApi\Attributes as OA;
@@ -106,4 +106,6 @@ use OpenApi\Attributes as OA;
         ]
     )
 ]
-class OAuthController extends Controller {}
+class OAuthController extends Controller
+{
+}
