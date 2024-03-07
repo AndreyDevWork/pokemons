@@ -1,0 +1,202 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Pokemons Backend",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api": {},
+        "/api/auth/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Registration",
+                "operationId": "e49cba58a6405534cdd7218d7499904a",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AuthRegisterRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "The user has successfully registered",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResource"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "The user with the provided username is already registered"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/oauth/token": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Get tokens",
+                "operationId": "d0c4298c73b4d913763efd3df2c917eb",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "oneOf": [
+                                    {
+                                        "properties": {
+                                            "grant_type": {
+                                                "type": "string",
+                                                "example": "password"
+                                            },
+                                            "client_id": {
+                                                "type": "string",
+                                                "example": "ZGFfPErDzJONO2j9evX3_2mRdgqN"
+                                            },
+                                            "client_secret": {
+                                                "type": "string",
+                                                "example": "KMWZ_L8jgUKNrShC"
+                                            },
+                                            "username": {
+                                                "type": "string",
+                                                "example": "Slark"
+                                            },
+                                            "password": {
+                                                "type": "string",
+                                                "example": "slarkAAA3"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    {
+                                        "properties": {
+                                            "grant_type": {
+                                                "type": "string",
+                                                "example": "refresh_token"
+                                            },
+                                            "client_id": {
+                                                "type": "string",
+                                                "example": "ZGFfPErDzJONO2j9evX3_2mRdgqN"
+                                            },
+                                            "client_secret": {
+                                                "type": "string",
+                                                "example": "KMWZ_L8jgUKNrShC"
+                                            },
+                                            "refresh_token": {
+                                                "type": "string",
+                                                "example": "15f8017665b4094d15432da"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token_type": {
+                                            "type": "string",
+                                            "example": "Bearer"
+                                        },
+                                        "expires_in": {
+                                            "type": "integer",
+                                            "example": "54000"
+                                        },
+                                        "access_token": {
+                                            "type": "string",
+                                            "example": "wianRpIjoiZDQwMTQwZGE3MDJlNTYwYzVkYz"
+                                        },
+                                        "refresh_token": {
+                                            "type": "string",
+                                            "example": "pIjoiZDQwMTQwZwZGE3MDJlNTYwYzVkYz"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Client authentication failed or invalid credentials provided"
+                    },
+                    "400": {
+                        "description": "Invalid grant type"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "AuthRegisterRequest": {
+                "required": [
+                    "username",
+                    "password"
+                ],
+                "properties": {
+                    "username": {
+                        "type": "string",
+                        "example": "Slark"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "slark@gmail.com",
+                        "nullable": true
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "slarkAAA3"
+                    }
+                },
+                "type": "object"
+            },
+            "UserResource": {
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "example": "7"
+                            },
+                            "username": {
+                                "type": "string",
+                                "example": "Slark"
+                            },
+                            "email": {
+                                "type": "string",
+                                "example": "slark@gmail.com",
+                                "nullable": true
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
