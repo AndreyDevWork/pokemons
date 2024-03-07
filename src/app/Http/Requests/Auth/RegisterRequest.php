@@ -3,7 +3,33 @@
 namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
+use OpenApi\Attributes as OA;
 
+#[
+    OA\Schema(
+        schema: "AuthRegisterRequest",
+        required: ["username", "password"],
+        properties: [
+            "username" => new OA\Property(
+                property: "username",
+                type: "string",
+                example: "Slark"
+            ),
+            "email" => new OA\Property(
+                property: "email",
+                type: "string",
+                example: "slark@gmail.com",
+                nullable: true
+            ),
+            "password" => new OA\Property(
+                property: "password",
+                type: "string",
+                example: "slarkAAA3"
+            ),
+        ],
+        type: "object"
+    )
+]
 class RegisterRequest extends FormRequest
 {
     /**

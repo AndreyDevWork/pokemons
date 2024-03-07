@@ -5,9 +5,92 @@
         "version": "1.0.0"
     },
     "paths": {
-        "/api": {}
+        "/api": {},
+        "/api/auth/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Registration",
+                "operationId": "e49cba58a6405534cdd7218d7499904a",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AuthRegisterRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "The user has successfully registered",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResource"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "The user with the provided username is already registered"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        }
     },
     "components": {
+        "schemas": {
+            "AuthRegisterRequest": {
+                "required": [
+                    "username",
+                    "password"
+                ],
+                "properties": {
+                    "username": {
+                        "type": "string",
+                        "example": "Slark"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "slark@gmail.com",
+                        "nullable": true
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "slarkAAA3"
+                    }
+                },
+                "type": "object"
+            },
+            "UserResource": {
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "example": "7"
+                            },
+                            "username": {
+                                "type": "string",
+                                "example": "Slark"
+                            },
+                            "email": {
+                                "type": "string",
+                                "example": "slark@gmail.com",
+                                "nullable": true
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "securitySchemes": {
             "bearerAuth": {
                 "type": "http",
