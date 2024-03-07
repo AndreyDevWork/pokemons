@@ -106,6 +106,4 @@ use OpenApi\Attributes as OA;
         ]
     )
 ]
-class OAuthController extends Controller
-{
-}
+class OAuthController extends Controller {}
