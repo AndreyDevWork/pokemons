@@ -6,49 +6,13 @@
     },
     "paths": {
         "/api": {},
-        "/api/auth/register": {
-            "post": {
-                "tags": [
-                    "Auth"
-                ],
-                "summary": "Registration",
-                "operationId": "e49cba58a6405534cdd7218d7499904a",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/AuthRegisterRequest"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "The user has successfully registered",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/UserResource"
-                                }
-                            }
-                        }
-                    },
-                    "409": {
-                        "description": "The user with the provided username is already registered"
-                    },
-                    "422": {
-                        "description": "Validation error"
-                    }
-                }
-            }
-        },
         "/oauth/token": {
             "post": {
                 "tags": [
                     "Auth"
                 ],
                 "summary": "Get tokens",
-                "operationId": "d0c4298c73b4d913763efd3df2c917eb",
+                "operationId": "be80d0c392c6993a59bd1a2e1801c3d2",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -139,6 +103,42 @@
                     },
                     "400": {
                         "description": "Invalid grant type"
+                    }
+                }
+            }
+        },
+        "/api/auth/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Registration",
+                "operationId": "e49cba58a6405534cdd7218d7499904a",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AuthRegisterRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "The user has successfully registered",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResource"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "The user with the provided username is already registered"
+                    },
+                    "422": {
+                        "description": "Validation error"
                     }
                 }
             }

@@ -19,3 +19,12 @@ Route::group(
         Route::post("/register", RegisterController::class);
     }
 );
+
+Route::group(
+    [
+        "namespace" => "\App\Http\Controllers\Currency",
+    ],
+    function () {
+        Route::get("/currency", IndexController::class);
+    }
+);
