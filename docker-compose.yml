@@ -46,21 +46,3 @@ services:
         environment:
             PGADMIN_DEFAULT_EMAIL: "${PGADMIN_DEFAULT_EMAIL}"
             PGADMIN_DEFAULT_PASSWORD: "${PGADMIN_DEFAULT_PASSWORD}"
-
-    elasticsearch:
-        image: elasticsearch:7.17.17
-        container_name: elasticsearch-pokemons
-        environment:
-            - node.name=es01
-            - cluster.name=es-docker-cluster
-            - discovery.type=single-node
-            - bootstrap.memory_lock=true
-            - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-        ulimits:
-            memlock:
-                soft: -1
-                hard: -1
-        volumes:
-            - ./elasticsearch/data:/usr/share/elasticsearch/data
-        ports:
-            - "${ELASTICSEARCH_HOST_PORT}"
