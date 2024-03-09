@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Http\Resources\Currency\CurrencyResource;
+use App\Http\Resources\User\UserResource;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        UserResource::withoutWrapping();
+        CurrencyResource::withoutWrapping();
     }
 }

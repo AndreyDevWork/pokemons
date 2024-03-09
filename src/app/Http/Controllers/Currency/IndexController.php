@@ -18,15 +18,10 @@ use OpenApi\Attributes as OA;
                 response: 200,
                 description: "Currencies collection",
                 content: new OA\JsonContent(
-                    properties: [
-                        "data" => new OA\Property(
-                            property: "data",
-                            type: "array",
-                            items: new OA\Items(
-                                ref: "#/components/schemas/CurrencyResource"
-                            )
-                        ),
-                    ]
+                    type: "array",
+                    items: new OA\Items(
+                        ref: "#/components/schemas/CurrencyResource"
+                    )
                 )
             ),
         ]
