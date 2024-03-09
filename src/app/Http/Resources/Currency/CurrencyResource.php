@@ -12,6 +12,11 @@ class CurrencyResource extends JsonResource
         OA\Schema(
             schema: "CurrencyResource",
             properties: [
+                "id" => new OA\Property(
+                    property: "id",
+                    type: "integer",
+                    example: "22"
+                ),
                 "num_code" => new OA\Property(
                     property: "num_code",
                     type: "string",
@@ -53,6 +58,7 @@ class CurrencyResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            "id" => $this->id,
             "num_code" => $this->num_code,
             "char_code" => $this->char_code,
             "nominal" => $this->nominal,

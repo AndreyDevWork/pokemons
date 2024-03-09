@@ -209,6 +209,10 @@
             },
             "CurrencyResource": {
                 "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": "22"
+                    },
                     "num_code": {
                         "type": "string",
                         "example": "840"
