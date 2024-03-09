@@ -1,4 +1,4 @@
-project-init: cp-env build run composer-i db-migrate rules gen-swagger update-currency schedule-work
+project-init: cp-env build run composer-i db-migrate rules gen-swagger update-currency schedule-work passport-install
 
 build:
 	docker-compose up -d --build

@@ -23,6 +23,7 @@ Route::group(
 Route::group(
     [
         "namespace" => "\App\Http\Controllers\Currency",
+        "middleware" => "auth:api",
     ],
     function () {
         Route::get("/currency", IndexController::class);

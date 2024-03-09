@@ -12,27 +12,21 @@ class UserResource extends JsonResource
         OA\Schema(
             schema: "UserResource",
             properties: [
-                "data" => new OA\Property(
-                    property: "data",
-                    properties: [
-                        "id" => new OA\Property(
-                            property: "id",
-                            type: "integer",
-                            example: "7"
-                        ),
-                        "username" => new OA\Property(
-                            property: "username",
-                            type: "string",
-                            example: "Slark"
-                        ),
-                        "email" => new OA\Property(
-                            property: "email",
-                            type: "string",
-                            example: "slark@gmail.com",
-                            nullable: true
-                        ),
-                    ],
-                    type: "object"
+                "id" => new OA\Property(
+                    property: "id",
+                    type: "integer",
+                    example: "7"
+                ),
+                "username" => new OA\Property(
+                    property: "username",
+                    type: "string",
+                    example: "Slark"
+                ),
+                "email" => new OA\Property(
+                    property: "email",
+                    type: "string",
+                    example: "slark@gmail.com",
+                    nullable: true
                 ),
             ]
         )

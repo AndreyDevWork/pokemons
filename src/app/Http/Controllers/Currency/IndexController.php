@@ -3,12 +3,45 @@
 namespace App\Http\Controllers\Currency;
 
 use App\Http\Controllers\Controller;
-use App\Models\Currency;
+use App\Http\Resources\Currency\CurrencyResource;
+use DB;
+use OpenApi\Attributes as OA;
 
+#[
+    OA\Get(
+        path: "/api/currency",
+        summary: "Get currencies",
+        security: [["bearerAuth" => []]],
+        tags: ["Currency"],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: "Currencies collection",
+                content: new OA\JsonContent(
+                    properties: [
+                        "data" => new OA\Property(
+                            property: "data",
+                            type: "array",
+                            items: new OA\Items(
+                                ref: "#/components/schemas/CurrencyResource"
+                            )
+                        ),
+                    ]
+                )
+            ),
+        ]
+    )
+]
 class IndexController extends Controller
 {
     public function __invoke()
     {
-        return Currency::all();
+        return CurrencyResource::collection(
+            DB::table("currencies")
+                ->orderBy("char_code")
+                ->orderBy("id", "desc")
+                ->distinct("char_code")
+                ->get()
+        );
     }
 }

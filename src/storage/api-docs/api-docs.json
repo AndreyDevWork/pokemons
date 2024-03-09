@@ -129,7 +129,12 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/UserResource"
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/UserResource"
+                                        }
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }
@@ -141,6 +146,40 @@
                         "description": "Validation error"
                     }
                 }
+            }
+        },
+        "/api/currency": {
+            "get": {
+                "tags": [
+                    "Currency"
+                ],
+                "summary": "Get currencies",
+                "operationId": "9b16a2558fca9f4b0ea777238b46d3a6",
+                "responses": {
+                    "200": {
+                        "description": "Currencies collection",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/CurrencyResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         }
     },
@@ -168,25 +207,54 @@
                 },
                 "type": "object"
             },
+            "CurrencyResource": {
+                "properties": {
+                    "num_code": {
+                        "type": "string",
+                        "example": "840"
+                    },
+                    "char_code": {
+                        "type": "string",
+                        "example": "USD"
+                    },
+                    "nominal": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Доллар США"
+                    },
+                    "value": {
+                        "type": "string",
+                        "example": "90.7493"
+                    },
+                    "vunit_rate": {
+                        "type": "string",
+                        "example": "90.7493"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2024-03-08 23:26:19"
+                    }
+                },
+                "type": "object"
+            },
             "UserResource": {
                 "properties": {
-                    "data": {
-                        "properties": {
-                            "id": {
-                                "type": "integer",
-                                "example": "7"
-                            },
-                            "username": {
-                                "type": "string",
-                                "example": "Slark"
-                            },
-                            "email": {
-                                "type": "string",
-                                "example": "slark@gmail.com",
-                                "nullable": true
-                            }
-                        },
-                        "type": "object"
+                    "id": {
+                        "type": "integer",
+                        "example": "7"
+                    },
+                    "username": {
+                        "type": "string",
+                        "example": "Slark"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "slark@gmail.com",
+                        "nullable": true
                     }
                 },
                 "type": "object"

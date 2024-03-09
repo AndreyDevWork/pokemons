@@ -24,7 +24,13 @@ use OpenApi\Attributes as OA;
                 response: 201,
                 description: "The user has successfully registered",
                 content: new OA\JsonContent(
-                    ref: "#/components/schemas/UserResource"
+                    properties: [
+                        "data" => new OA\Property(
+                            property: "data",
+                            ref: "#/components/schemas/UserResource",
+                            type: "object"
+                        ),
+                    ]
                 )
             ),
             new OA\Response(
