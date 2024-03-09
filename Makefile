@@ -11,9 +11,6 @@ run:
 down:
 	docker compose down
 
-rules:
-	sudo chmod 777 -R ./
-
 update-currency:
 	docker-compose exec app php artisan app:update-currency
 
