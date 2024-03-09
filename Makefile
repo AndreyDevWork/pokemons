@@ -1,5 +1,7 @@
 project-init: cp-env build run composer-i db-migrate rules gen-swagger update-currency schedule-work passport-install
 
+cp-env: cp-docker-env cp-laravel-env
+
 build:
 	docker-compose up -d --build
 
@@ -38,9 +40,6 @@ passport-install:
 
 gen-swagger:
 	docker-compose exec app php artisan l5-swagger:generate
-
-
-cp-env: cp-docker-env cp-laravel-env
 
 cp-docker-env:
 	cp ./.env.example .env
