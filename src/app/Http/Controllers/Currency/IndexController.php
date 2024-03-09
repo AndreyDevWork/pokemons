@@ -37,11 +37,7 @@ class IndexController extends Controller
     public function __invoke()
     {
         return CurrencyResource::collection(
-            DB::table("currencies")
-                ->orderBy("char_code")
-                ->orderBy("id", "desc")
-                ->distinct("char_code")
-                ->get()
+            DB::table("currencies")->orderBy("id", "desc")->limit(43)->get()
         );
     }
 }
