@@ -2,10 +2,12 @@ project-init: cp-env build run composer-i db-migrate rules gen-swagger update-cu
 
 cp-env: cp-docker-env cp-laravel-env
 
+run: docker-up update-currency schedule-work
+
 build:
 	docker-compose up -d --build
 
-run:
+docker-up:
 	docker compose up -d
 
 down:
