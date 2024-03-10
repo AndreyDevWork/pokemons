@@ -32,7 +32,7 @@
 -   The documentation REST API is available at http://localhost:8080/api/documentation
 -   Получение курсов в виде cli команды, запускаемой по крону;
     ```bash
-    make update-currency
+    make set-schedule
     ```
 
 #### Project Description: Converter REST API
