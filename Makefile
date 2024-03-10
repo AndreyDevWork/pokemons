@@ -1,8 +1,10 @@
-project-init: cp-env build run composer-i db-migrate rules gen-key gen-swagger update-currency schedule-work
+project-init: cp-env build composer-i db-migrate rules gen-key gen-swagger set-schedule
 
 cp-env: cp-docker-env cp-laravel-env
 
 run: docker-up update-currency schedule-work
+
+set-schedule: update-currency schedule-work
 
 build:
 	docker-compose up -d --build
