@@ -13,7 +13,7 @@ docker-up:
 	docker compose up -d
 
 gen-key:
-	php artisan key:generate
+	docker-compose exec app php artisan key:generate
 
 down:
 	docker compose down
