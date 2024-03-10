@@ -1,4 +1,4 @@
-project-init: cp-env build run composer-i db-migrate rules gen-swagger update-currency schedule-work
+project-init: cp-env build run composer-i db-migrate rules gen-key gen-swagger update-currency schedule-work
 
 cp-env: cp-docker-env cp-laravel-env
 
@@ -9,6 +9,9 @@ build:
 
 docker-up:
 	docker compose up -d
+
+gen-key:
+	php artisan key:generate
 
 down:
 	docker compose down
