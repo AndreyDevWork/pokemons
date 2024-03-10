@@ -30,6 +30,10 @@
 
 -   The application is available at http://localhost:8080/
 -   The documentation REST API is available at http://localhost:8080/api/documentation
+-   Получение курсов в виде cli команды, запускаемой по крону;
+    ```bash
+    make update-currency
+    ```
 
 #### Project Description: Converter REST API
 
