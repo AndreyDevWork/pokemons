@@ -1,4 +1,6 @@
-project-init: cp-docker-env cp-laravel-env cp-laravel-env-testing build run composer-i db-migrate db-seed rules storage-link gen-swagger
+project-init: cp-env build run composer-i db-migrate db-seed rules storage-link gen-key gen-swagger
+
+cp-env: cp-docker-env cp-laravel-env cp-laravel-env-testing
 
 build:
 	docker-compose up -d --build
@@ -30,14 +32,8 @@ passport-keys:
 storage-link:
 	docker-compose exec app php artisan storage:link
 
-cp-docker-env:
-	cp ./.env.example .env
-
-cp-laravel-env:
-	cp src/.env.example src/.env
-
-cp-laravel-env-testing:
-	cp src/.env.testing.example src/.env.testing
+gen-key:
+	docker-compose exec app php artisan key:generate
 
 rules:
 	sudo chmod 777 -R ./
@@ -47,3 +43,12 @@ passport-install:
 
 gen-swagger:
 	docker-compose exec app php artisan l5-swagger:generate
+
+cp-docker-env:
+	cp ./.env.example .env
+
+cp-laravel-env:
+	cp src/.env.example src/.env
+
+cp-laravel-env-testing:
+	cp src/.env.testing.example src/.env.testing
