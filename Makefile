@@ -1,4 +1,4 @@
-project-init: cp-docker-env cp-laravel-env build run composer-i db-migrate db-seed rules storage-link gen-swagger
+project-init: cp-docker-env cp-laravel-env cp-laravel-env-testing build run composer-i db-migrate db-seed rules storage-link gen-swagger
 
 build:
 	docker-compose up -d --build
@@ -35,6 +35,9 @@ cp-docker-env:
 
 cp-laravel-env:
 	cp src/.env.example src/.env
+
+cp-laravel-env-testing:
+	cp src/.env.testing.example src/.env.testing
 
 rules:
 	sudo chmod 777 -R ./
