@@ -35,13 +35,13 @@ class OAuthControllerTest extends TestCase
 
     public function testLogin(): void
     {
-        $response = $this->login($this->client);
+        $response = $this->login();
         $response->assertStatus(200);
     }
 
     public function testRefreshToken()
     {
-        $responseLogin = $this->login($this->client);
+        $responseLogin = $this->login();
         $responseLoginContent = json_decode($responseLogin->content());
 
         $responseRefresh = $this->post("/oauth/token", [
@@ -54,12 +54,12 @@ class OAuthControllerTest extends TestCase
         $responseRefresh->assertStatus(200);
     }
 
-    private function login(Client $client): \Illuminate\Testing\TestResponse
+    private function login(): \Illuminate\Testing\TestResponse
     {
         $response = $this->post("/oauth/token", [
             "grant_type" => "password",
-            "client_id" => $client->id,
-            "client_secret" => $client->secret,
+            "client_id" => $this->client->id,
+            "client_secret" => $this->client->secret,
             "username" => "Slark",
             "password" => "1246qwrt",
         ]);
