@@ -2,10 +2,7 @@
 
 namespace Auth;
 
-use App\Models\User;
-use Laravel\Passport\Client;
 use Laravel\Passport\ClientRepository;
-use phpseclib3\File\ASN1\Maps\EncryptedData;
 use Tests\TestCase;
 
 class OAuthControllerTest extends TestCase
@@ -39,6 +36,19 @@ class OAuthControllerTest extends TestCase
         $response->assertStatus(200);
     }
 
+    private function login(): \Illuminate\Testing\TestResponse
+    {
+        $response = $this->post("/oauth/token", [
+            "grant_type" => "password",
+            "client_id" => $this->client->id,
+            "client_secret" => $this->client->secret,
+            "username" => "Slark",
+            "password" => "1246qwrt",
+        ]);
+
+        return $response;
+    }
+
     public function testRefreshToken(): void
     {
         $responseLogin = $this->login();
@@ -52,18 +62,5 @@ class OAuthControllerTest extends TestCase
         ]);
 
         $responseRefresh->assertStatus(200);
-    }
-
-    private function login(): \Illuminate\Testing\TestResponse
-    {
-        $response = $this->post("/oauth/token", [
-            "grant_type" => "password",
-            "client_id" => $this->client->id,
-            "client_secret" => $this->client->secret,
-            "username" => "Slark",
-            "password" => "1246qwrt",
-        ]);
-
-        return $response;
     }
 }
