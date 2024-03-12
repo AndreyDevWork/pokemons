@@ -52,3 +52,6 @@ cp-laravel-env:
 
 cp-laravel-env-testing:
 	cp src/.env.testing.example src/.env.testing
+
+tests:
+	docker-compose exec app php artisan test
