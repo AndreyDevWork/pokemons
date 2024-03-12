@@ -39,7 +39,7 @@ class OAuthControllerTest extends TestCase
         $response->assertStatus(200);
     }
 
-    public function testRefreshToken()
+    public function testRefreshToken(): void
     {
         $responseLogin = $this->login();
         $responseLoginContent = json_decode($responseLogin->content());
