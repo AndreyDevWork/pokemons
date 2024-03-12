@@ -8,7 +8,9 @@
         "/api": {},
         "/oauth/token": {
             "post": {
-                "tags": ["Auth"],
+                "tags": [
+                    "Auth"
+                ],
                 "summary": "Get tokens",
                 "operationId": "be80d0c392c6993a59bd1a2e1801c3d2",
                 "requestBody": {
@@ -107,7 +109,9 @@
         },
         "/api/auth/register": {
             "post": {
-                "tags": ["Auth"],
+                "tags": [
+                    "Auth"
+                ],
                 "summary": "Registration",
                 "operationId": "e49cba58a6405534cdd7218d7499904a",
                 "requestBody": {
@@ -143,7 +147,10 @@
     "components": {
         "schemas": {
             "AuthRegisterRequest": {
-                "required": ["username", "password"],
+                "required": [
+                    "username",
+                    "password"
+                ],
                 "properties": {
                     "username": {
                         "type": "string",
