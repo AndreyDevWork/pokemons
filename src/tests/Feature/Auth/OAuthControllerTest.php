@@ -19,10 +19,20 @@ class OAuthControllerTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
+        $clientRepository = new ClientRepository();
+        $client = $clientRepository->createPasswordGrantClient(
+            null,
+            "Test Client",
+            config("app.url")
+        );
+        $this->client = $client;
 
-        // Создать клиента при настройке тестового окружения
-        $this->client = $this->createPasswordGrantClient();
+        $this->post("/api/auth/register", [
+            "username" => "Slark",
+            "password" => "1246qwrt",
+        ]);
     }
+
     public function testLogin(): void
     {
         $response = $this->login($this->client);
@@ -46,7 +56,6 @@ class OAuthControllerTest extends TestCase
 
     private function login(Client $client): \Illuminate\Testing\TestResponse
     {
-        self::register();
         $response = $this->post("/oauth/token", [
             "grant_type" => "password",
             "client_id" => $client->id,
@@ -56,23 +65,5 @@ class OAuthControllerTest extends TestCase
         ]);
 
         return $response;
-    }
-
-    private function register(): void
-    {
-        $this->post("/api/auth/register", [
-            "username" => "Slark",
-            "password" => "1246qwrt",
-        ]);
-    }
-
-    private function createPasswordGrantClient(): Client
-    {
-        $clientRepository = new ClientRepository();
-        return $clientRepository->createPasswordGrantClient(
-            null,
-            "Test Client",
-            config("app.url")
-        );
     }
 }
