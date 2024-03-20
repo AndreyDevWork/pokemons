@@ -6,8 +6,7 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 class UserDTO extends DataTransferObject
 {
-    public readonly int|null $id;
-    public readonly string|null $username;
+    public readonly int $id;
+    public readonly string $username;
     public readonly string|null $email;
-    public readonly string|null $password;
 }
