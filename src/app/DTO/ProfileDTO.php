@@ -6,12 +6,12 @@ use Spatie\DataTransferObject\DataTransferObject;
 
 class ProfileDTO extends DataTransferObject
 {
-    public string $id;
-    public string $date_of_birth;
-    public string $firstname;
-    public string $lastname;
-    public string $user_id;
+    public readonly int $id;
+    public readonly string $date_of_birth;
+    public readonly string $firstname;
+    public readonly string $lastname;
+    public readonly int $user_id;
 
-    public string $created_at;
-    public string $updated_at;
+    public readonly string $created_at;
+    public readonly string $updated_at;
 }

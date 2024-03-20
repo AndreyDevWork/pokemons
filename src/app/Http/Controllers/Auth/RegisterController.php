@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\DTO\UserDTO;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Resources\User\UserResource;
@@ -39,8 +40,8 @@ class RegisterController extends Controller
 {
     public function __invoke(RegisterRequest $request, RegisterService $service)
     {
-        $data = $request->validated();
-        $user = $service($data);
+        $data = new UserDTO($request->validated());
+        $user = $service($data->toArray());
 
         return $user instanceof User ? new UserResource($user) : $user;
     }
