@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class () extends Migration {
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -17,10 +17,9 @@ return new class () extends Migration {
             $table->string("lastname");
             $table
                 ->foreignId("user_id")
-                ->constrained()
-                ->on("users")
-                ->onDelete("cascade")
-                ->index();
+                ->constrained("users")
+                ->onDelete("cascade");
+            $table->foreignId("role_id")->constrained("profile_roles");
             $table->timestamps();
             $table->softDeletes();
         });
