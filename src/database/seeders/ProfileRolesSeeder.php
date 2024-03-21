@@ -14,7 +14,7 @@ class ProfileRolesSeeder extends Seeder
     {
         ProfileRole::truncate();
 
-        ProfileRole::create(["role" => "member"]);
+        ProfileRole::create(["role" => "student"]);
         ProfileRole::create(["role" => "speaker"]);
         ProfileRole::create(["role" => "organization"]);
     }
