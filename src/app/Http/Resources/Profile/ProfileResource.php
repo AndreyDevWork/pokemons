@@ -41,6 +41,7 @@ use OpenApi\Attributes as OA;
 ]
 class ProfileResource extends JsonResource
 {
+    public static $wrap = false;
     public function toArray(Request $request): array
     {
         return [
