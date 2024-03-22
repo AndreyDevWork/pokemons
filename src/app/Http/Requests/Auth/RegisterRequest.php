@@ -26,8 +26,7 @@ use OpenApi\Attributes as OA;
                 type: "string",
                 example: "slarkAAA3"
             ),
-        ],
-        type: "object"
+        ]
     )
 ]
 class RegisterRequest extends FormRequest

@@ -182,6 +182,47 @@
                     }
                 ]
             }
+        },
+        "/api/profile": {
+            "post": {
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Create profile of user",
+                "operationId": "d18064348bf3a6f8f1acdd465b861e6d",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProfileStoreRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "The profile has successfully created profile",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProfileResource"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Profile already exists for this user."
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
         }
     },
     "components": {
@@ -204,6 +245,33 @@
                     "password": {
                         "type": "string",
                         "example": "slarkAAA3"
+                    }
+                },
+                "type": "object"
+            },
+            "ProfileStoreRequest": {
+                "required": [
+                    "date_of_birth",
+                    "firstname",
+                    "lastname",
+                    "role_id"
+                ],
+                "properties": {
+                    "date_of_birth": {
+                        "type": "string",
+                        "example": "2001-02-14"
+                    },
+                    "firstname": {
+                        "type": "string",
+                        "example": "Slark"
+                    },
+                    "lastname": {
+                        "type": "string",
+                        "example": "Puchina"
+                    },
+                    "role_id": {
+                        "type": "integer",
+                        "example": "1"
                     }
                 },
                 "type": "object"

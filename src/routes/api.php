@@ -27,5 +27,6 @@ Route::group(
     ],
     function () {
         Route::get("/profile/{profile}", ShowController::class);
+        Route::post("/profile", StoreController::class);
     }
 );
