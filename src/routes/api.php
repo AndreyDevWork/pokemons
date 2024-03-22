@@ -19,3 +19,13 @@ Route::group(
         Route::post("/register", RegisterController::class);
     }
 );
+
+Route::group(
+    [
+        "namespace" => "\App\Http\Controllers\Profile",
+        "middleware" => "auth:api",
+    ],
+    function () {
+        Route::get("/profile/{profile}", ShowController::class);
+    }
+);
