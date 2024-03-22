@@ -22,6 +22,7 @@ class ProfileFactory extends Factory
             "firstname" => $this->faker->name,
             "lastname" => $this->faker->lastName,
             "user_id" => User::factory(),
+            "role_id" => $this->faker->numberBetween(1, 3),
         ];
     }
 }
