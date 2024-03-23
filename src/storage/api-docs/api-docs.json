@@ -143,37 +143,31 @@
                 }
             }
         },
-        "/api/profile/{id}": {
+        "/api/profile": {
             "get": {
                 "tags": [
                     "Profile"
                 ],
-                "summary": "Get profile by USER ID",
-                "operationId": "d4d9ab32b5c27c954234506f40c8bdcf",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "ID of the user",
-                        "schema": {
-                            "type": "integer",
-                            "format": "int64"
-                        }
-                    }
-                ],
+                "summary": "Get profiles",
+                "operationId": "0aefa8e5eec2983372a3083b1ca7ebe5",
                 "responses": {
                     "200": {
                         "description": "Profile",
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/ProfileResource"
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/ProfileResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
                                 }
                             }
                         }
-                    },
-                    "404": {
-                        "description": "Profile not found"
                     }
                 },
                 "security": [
@@ -181,9 +175,7 @@
                         "bearerAuth": []
                     }
                 ]
-            }
-        },
-        "/api/profile": {
+            },
             "post": {
                 "tags": [
                     "Profile"
@@ -251,6 +243,46 @@
                     },
                     "422": {
                         "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/profile/{id}": {
+            "get": {
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Get profile by USER ID",
+                "operationId": "d4d9ab32b5c27c954234506f40c8bdcf",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the user",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Profile",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProfileResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Profile not found"
                     }
                 },
                 "security": [
