@@ -6,37 +6,32 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use OpenApi\Attributes as OA;
 
+#[
+    OA\Schema(
+        schema: "UserResource",
+        properties: [
+            "id" => new OA\Property(
+                property: "id",
+                type: "integer",
+                example: "7"
+            ),
+            "username" => new OA\Property(
+                property: "username",
+                type: "string",
+                example: "Slark"
+            ),
+            "email" => new OA\Property(
+                property: "email",
+                type: "string",
+                example: "slark@gmail.com",
+                nullable: true
+            ),
+        ]
+    )
+]
 class UserResource extends JsonResource
 {
-    #[
-        OA\Schema(
-            schema: "UserResource",
-            properties: [
-                "data" => new OA\Property(
-                    property: "data",
-                    properties: [
-                        "id" => new OA\Property(
-                            property: "id",
-                            type: "integer",
-                            example: "7"
-                        ),
-                        "username" => new OA\Property(
-                            property: "username",
-                            type: "string",
-                            example: "Slark"
-                        ),
-                        "email" => new OA\Property(
-                            property: "email",
-                            type: "string",
-                            example: "slark@gmail.com",
-                            nullable: true
-                        ),
-                    ],
-                    type: "object"
-                ),
-            ]
-        )
-    ]
+    public static $wrap = null;
     public function toArray(Request $request): array
     {
         return [

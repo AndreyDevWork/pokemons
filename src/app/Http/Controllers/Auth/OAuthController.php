@@ -100,10 +100,12 @@ use OpenApi\Attributes as OA;
             ),
             new OA\Response(
                 response: 401,
-                description: "Client authentication failed or invalid credentials provided"
+                description: "Invalid username or password"
             ),
             new OA\Response(response: 400, description: "Invalid grant type"),
         ]
     )
 ]
-class OAuthController extends Controller {}
+class OAuthController extends Controller
+{
+}

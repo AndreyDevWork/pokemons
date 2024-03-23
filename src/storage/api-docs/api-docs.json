@@ -99,7 +99,7 @@
                         }
                     },
                     "401": {
-                        "description": "Client authentication failed or invalid credentials provided"
+                        "description": "Invalid username or password"
                     },
                     "400": {
                         "description": "Invalid grant type"
@@ -142,6 +142,155 @@
                     }
                 }
             }
+        },
+        "/api/profile": {
+            "get": {
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Get profiles",
+                "operationId": "0aefa8e5eec2983372a3083b1ca7ebe5",
+                "responses": {
+                    "200": {
+                        "description": "Profile",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/ProfileResource"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Create profile of user",
+                "operationId": "d18064348bf3a6f8f1acdd465b861e6d",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProfileStoreRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "The profile has successfully created profile",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProfileResource"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Profile already exists for this user."
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "patch": {
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Update auth profile of user",
+                "operationId": "a502b86f4ba3628925cac1a7eec8c4b2",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProfileUpdateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "The profile has successfully updated profile",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProfileResource"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/profile/{id}": {
+            "get": {
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Get profile by USER ID",
+                "operationId": "d4d9ab32b5c27c954234506f40c8bdcf",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the user",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Profile",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProfileResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Profile not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
         }
     },
     "components": {
@@ -168,25 +317,88 @@
                 },
                 "type": "object"
             },
+            "ProfileStoreRequest": {
+                "required": [
+                    "date_of_birth",
+                    "firstname",
+                    "lastname",
+                    "role_id"
+                ],
+                "properties": {
+                    "date_of_birth": {
+                        "type": "string",
+                        "example": "2001-02-14"
+                    },
+                    "firstname": {
+                        "type": "string",
+                        "example": "Slark"
+                    },
+                    "lastname": {
+                        "type": "string",
+                        "example": "Puchina"
+                    },
+                    "role_id": {
+                        "type": "integer",
+                        "example": "1"
+                    }
+                },
+                "type": "object"
+            },
+            "ProfileUpdateRequest": {
+                "properties": {
+                    "date_of_birth": {
+                        "type": "string",
+                        "example": "2001-02-14"
+                    },
+                    "firstname": {
+                        "type": "string",
+                        "example": "Slark"
+                    },
+                    "lastname": {
+                        "type": "string",
+                        "example": "Puchina"
+                    }
+                },
+                "type": "object"
+            },
+            "ProfileResource": {
+                "properties": {
+                    "date_of_birth": {
+                        "type": "string",
+                        "example": "2001-02-14"
+                    },
+                    "firstname": {
+                        "type": "string",
+                        "example": "Slark"
+                    },
+                    "lastname": {
+                        "type": "string",
+                        "example": "Puchina"
+                    },
+                    "role": {
+                        "type": "string",
+                        "example": "student"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/UserResource"
+                    }
+                },
+                "type": "object"
+            },
             "UserResource": {
                 "properties": {
-                    "data": {
-                        "properties": {
-                            "id": {
-                                "type": "integer",
-                                "example": "7"
-                            },
-                            "username": {
-                                "type": "string",
-                                "example": "Slark"
-                            },
-                            "email": {
-                                "type": "string",
-                                "example": "slark@gmail.com",
-                                "nullable": true
-                            }
-                        },
-                        "type": "object"
+                    "id": {
+                        "type": "integer",
+                        "example": "7"
+                    },
+                    "username": {
+                        "type": "string",
+                        "example": "Slark"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "slark@gmail.com",
+                        "nullable": true
                     }
                 },
                 "type": "object"

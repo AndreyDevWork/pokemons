@@ -9,9 +9,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Profile extends Model
 {
     use HasFactory;
-    protected $table = "profiles";
-    protected $fillable = ["date_of_birth", "firstname", "lastname"];
 
+    protected $table = "profiles";
+    protected $fillable = [
+        "date_of_birth",
+        "firstname",
+        "lastname",
+        "user_id",
+        "role_id",
+    ];
     protected $with = ["user", "role"];
 
     public function user(): BelongsTo

@@ -11,6 +11,8 @@ class ProfileDTO extends DataTransferObject
     public readonly string $firstname;
     public readonly string $lastname;
     public readonly int $user_id;
+    public readonly string $role_id;
+
     public readonly string $created_at;
     public readonly string $updated_at;
 }

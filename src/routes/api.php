@@ -19,3 +19,16 @@ Route::group(
         Route::post("/register", RegisterController::class);
     }
 );
+
+Route::group(
+    [
+        "namespace" => "\App\Http\Controllers\Profile",
+        "middleware" => "auth:api",
+    ],
+    function () {
+        Route::get("/profile/{profile}", ShowController::class);
+        Route::post("/profile", StoreController::class);
+        Route::patch("/profile", UpdateController::class);
+        Route::get("/profile", IndexController::class);
+    }
+);

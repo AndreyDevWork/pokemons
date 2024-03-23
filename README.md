@@ -9,16 +9,24 @@
 1. Clone this repository
 
     ```bash
-    git clone -b feature/setup-project git@github.com:AndreyDevWork/pokemons.git
+    git clone -b feature/converter git@github.com:AndreyDevWork/pokemons-backend.git
     ```
 
-2. Build project by Makefile command
+2. Init project by Makefile command
 
     ```bash
-    make build
+    make project-init
+    ```
+
+3. install Passport, необходимо скопировать Client ID и Client secret от Password grant client в .env в фронтенд приложение https://github.com/AndreyDevWork/lk-typescript-quasar
+
+    ```bash
+    make passport-install
     ```
 
 -   The application is available at http://localhost:8080/
+-   The documentation REST API is available at http://localhost:8080/api/documentation
+-   The Laravel Telescope is available at http://localhost:8080/telescope
 
 ### Available Services
 
