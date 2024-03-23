@@ -222,6 +222,42 @@
                         "bearerAuth": []
                     }
                 ]
+            },
+            "patch": {
+                "tags": [
+                    "Profile"
+                ],
+                "summary": "Update auth profile of user",
+                "operationId": "a502b86f4ba3628925cac1a7eec8c4b2",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ProfileUpdateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "The profile has successfully updated profile",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProfileResource"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
             }
         }
     },
@@ -272,6 +308,23 @@
                     "role_id": {
                         "type": "integer",
                         "example": "1"
+                    }
+                },
+                "type": "object"
+            },
+            "ProfileUpdateRequest": {
+                "properties": {
+                    "date_of_birth": {
+                        "type": "string",
+                        "example": "2001-02-14"
+                    },
+                    "firstname": {
+                        "type": "string",
+                        "example": "Slark"
+                    },
+                    "lastname": {
+                        "type": "string",
+                        "example": "Puchina"
                     }
                 },
                 "type": "object"

@@ -28,5 +28,6 @@ Route::group(
     function () {
         Route::get("/profile/{profile}", ShowController::class);
         Route::post("/profile", StoreController::class);
+        Route::patch("/profile", UpdateController::class);
     }
 );
