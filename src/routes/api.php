@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,14 @@ Route::group(
     ["namespace" => "App\Http\Controllers\Auth", "prefix" => "auth"],
     function () {
         Route::post("/register", RegisterController::class);
+        Route::post("/send-email-verification", [
+            VerifyEmailController::class,
+            "sendEmailVerification",
+        ])->middleware("auth:api");
+        Route::get("email/verify/{id}/{hash}", [
+            VerifyEmailController::class,
+            "verificationEmail",
+        ])->name("verification.verify");
     }
 );
 
