@@ -23,6 +23,8 @@ class User extends Authenticatable
         "password" => "hashed",
     ];
 
+    protected $with = ["profile"];
+
     public function findForPassport($username)
     {
         return $this->where("username", $username)->first();
