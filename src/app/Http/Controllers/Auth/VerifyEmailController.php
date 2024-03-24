@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Mail\TestMessage;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Models\User;
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Http\Request;
+use Redirect;
 
 class VerifyEmailController extends Controller
 {
@@ -16,12 +17,27 @@ class VerifyEmailController extends Controller
         return response()->json(["message" => "Verification email sent"]);
     }
 
-    public function verificationEmail(EmailVerificationRequest $request)
+    public function verificationEmail(Request $request, $id, $token)
     {
-        dd(22);
-        $request->authorize();
-        dd(\Auth::user());
-        $request->fulfill();
-        return response()->json(["message" => "Email verified"]);
+        $user = User::find($id);
+
+        if (
+            !hash_equals(
+                (string) $token,
+                sha1($user->getEmailForVerification())
+            )
+        ) {
+            return response()->json(["error" => "Invalid verification link"]);
+        }
+
+        if ($user->hasVerifiedEmail()) {
+            return response()->json(["error" => "Email already verified"]);
+        }
+
+        if ($user->markEmailAsVerified()) {
+            event(new Verified($user));
+        }
+
+        return Redirect::to(env("FRONT_URL"));
     }
 }
