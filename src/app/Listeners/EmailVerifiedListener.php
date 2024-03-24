@@ -21,6 +21,6 @@ class EmailVerifiedListener
      */
     public function handle(Verified $event): void
     {
-        Mail::to("ohotaandrey4@gmail.com")->send(new EmailVerifiedMail());
+        Mail::to($event->user->email)->send(new EmailVerifiedMail());
     }
 }
