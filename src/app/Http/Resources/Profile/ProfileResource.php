@@ -49,6 +49,8 @@ class ProfileResource extends JsonResource
             "firstname" => $this->firstname,
             "lastname" => $this->lastname,
             "role" => $this->role->role,
+            "created_at" => $this->updated_at->format("Y-m-dTH:i:s"),
+            "updated_at" => $this->updated_at->format("Y-m-dTH:i:s"),
             "user" => new UserResource($this->user),
         ];
     }
