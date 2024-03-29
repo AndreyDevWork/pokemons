@@ -19,7 +19,7 @@ return new class extends Migration {
                 ->foreignId("user_id")
                 ->constrained("users")
                 ->onDelete("cascade");
-            $table->foreignId("role_id")->constrained("profile_roles");
+            $table->foreignId("role_id")->constrained("roles");
             $table->timestamps();
             $table->softDeletes();
         });

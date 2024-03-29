@@ -27,6 +27,6 @@ class Profile extends Model
 
     public function role(): BelongsTo
     {
-        return $this->belongsTo(ProfileRole::class);
+        return $this->belongsTo(Role::class);
     }
 }
