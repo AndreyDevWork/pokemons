@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Chat\ChatGroup;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -34,10 +33,5 @@ class User extends Authenticatable implements MustVerifyEmail
     public function profiles(): HasMany
     {
         return $this->hasMany(Profile::class);
-    }
-
-    public function chatGroups(): HasMany
-    {
-        return $this->hasMany(ChatGroup::class);
     }
 }
