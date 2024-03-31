@@ -2,7 +2,7 @@
 
 namespace App\Models\Chat;
 
-use App\Models\User;
+use App\Models\Profile;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,8 +13,8 @@ class ChatGroup extends Model
 
     protected $table = "chat_groups";
 
-    public function user(): BelongsTo
+    public function profile(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Profile::class);
     }
 }
