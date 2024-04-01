@@ -18,7 +18,7 @@ class Profile extends Model
         "user_id",
         "role_id",
     ];
-    protected $with = ["role"];
+    protected $with = ["role", "user"];
 
     public function user(): BelongsTo
     {
