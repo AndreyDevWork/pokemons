@@ -12,6 +12,7 @@ use OpenApi\Attributes as OA;
 #[
     OA\Post(
         path: "/api/auth/register",
+        operationId: "signUp",
         summary: "Registration",
         requestBody: new OA\RequestBody(
             content: new OA\JsonContent(

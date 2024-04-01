@@ -12,6 +12,7 @@ use OpenApi\Attributes as OA;
 #[
     OA\Post(
         path: "/api/profile",
+        operationId: "createProfile",
         summary: "Create profile of user",
         security: [["bearerAuth" => []]],
         requestBody: new OA\RequestBody(

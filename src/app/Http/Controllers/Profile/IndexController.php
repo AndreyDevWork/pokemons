@@ -10,6 +10,7 @@ use OpenApi\Attributes as OA;
 #[
     OA\Get(
         path: "/api/profile",
+        operationId: "getProfiles",
         summary: "Get profiles",
         security: [["bearerAuth" => []]],
         tags: ["Profile"],
