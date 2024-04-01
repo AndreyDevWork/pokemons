@@ -12,7 +12,7 @@
                     "Auth"
                 ],
                 "summary": "Get tokens",
-                "operationId": "be80d0c392c6993a59bd1a2e1801c3d2",
+                "operationId": "signIn",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -113,7 +113,7 @@
                     "Auth"
                 ],
                 "summary": "Registration",
-                "operationId": "e49cba58a6405534cdd7218d7499904a",
+                "operationId": "signUp",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -149,7 +149,7 @@
                     "Profile"
                 ],
                 "summary": "Get profiles",
-                "operationId": "0aefa8e5eec2983372a3083b1ca7ebe5",
+                "operationId": "getProfiles",
                 "responses": {
                     "200": {
                         "description": "Profile",
@@ -181,7 +181,7 @@
                     "Profile"
                 ],
                 "summary": "Create profile of user",
-                "operationId": "d18064348bf3a6f8f1acdd465b861e6d",
+                "operationId": "createProfile",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -220,7 +220,7 @@
                     "Profile"
                 ],
                 "summary": "Update auth profile of user",
-                "operationId": "a502b86f4ba3628925cac1a7eec8c4b2",
+                "operationId": "updateProfile",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -258,7 +258,7 @@
                     "Profile"
                 ],
                 "summary": "Get profile by USER ID",
-                "operationId": "d4d9ab32b5c27c954234506f40c8bdcf",
+                "operationId": "getProfile",
                 "parameters": [
                     {
                         "name": "id",

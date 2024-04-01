@@ -8,6 +8,7 @@ use OpenApi\Attributes as OA;
 #[
     OA\Post(
         path: "/oauth/token",
+        operationId: "signIn",
         summary: "Get tokens",
         requestBody: new OA\RequestBody(
             content: new OA\JsonContent(

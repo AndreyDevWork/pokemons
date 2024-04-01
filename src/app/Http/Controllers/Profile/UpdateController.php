@@ -12,6 +12,7 @@ use OpenApi\Attributes as OA;
 #[
     OA\Patch(
         path: "/api/profile",
+        operationId: "updateProfile",
         summary: "Update auth profile of user",
         security: [["bearerAuth" => []]],
         requestBody: new OA\RequestBody(
