@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -17,12 +18,14 @@ class ProfileFactory extends Factory
      */
     public function definition(): array
     {
+        $roleIds = Role::all()->pluck("id");
+
         return [
             "date_of_birth" => $this->faker->date,
             "firstname" => $this->faker->name,
             "lastname" => $this->faker->lastName,
             "user_id" => User::factory(),
-            "role_id" => $this->faker->numberBetween(1, 3),
+            "role_id" => $this->faker->randomElement($roleIds),
         ];
     }
 }
