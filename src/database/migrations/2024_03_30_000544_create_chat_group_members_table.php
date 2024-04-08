@@ -14,7 +14,7 @@ return new class extends Migration {
     {
         Schema::create("chat_group_members", function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(ChatGroup::class)->unique();
+            $table->foreignIdFor(ChatGroup::class);
             $table->foreignIdFor(Profile::class);
             $table->timestamps();
             $table->softDeletes();
