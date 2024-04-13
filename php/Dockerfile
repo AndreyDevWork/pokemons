@@ -7,28 +7,20 @@ RUN set -eux; \
     cd /tmp \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer; \
     \
-    apt-get update && apt-get install -y --fix-missing \
-        apt-utils \
-        nano \
-        wget \
-        dialog \
-        vim \
-        build-essential \
-        git \
+    apt-get update && apt-get install -y --no-install-recommends --fix-missing \
         curl \
-        libcurl4 \
-        libcurl4-openssl-dev \
-        zlib1g-dev \
-        libzip-dev \
-        zip \
-        libbz2-dev \
-        locales \
-        libmcrypt-dev \
-        libicu-dev \
-        libonig-dev \
+        libmemcached-dev \
+        libz-dev \
         libpq-dev \
+        libjpeg-dev \
+        libpng-dev \
+        libfreetype6-dev \
+        libssl-dev \
+        libwebp-dev \
+        libxpm-dev \
+        libmcrypt-dev \
         libmagickwand-dev \
-        libxml2-dev; \
+        libonig-dev; \
     \
     echo "\e[1;33mInstall important libraries\e[0m"; \
     docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql; \
