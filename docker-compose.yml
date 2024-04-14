@@ -1,6 +1,17 @@
 version: "3.8"
 
 services:
+    app:
+        container_name: pokemons
+        build:
+            context: .
+            dockerfile: containers/php/Dockerfile
+        volumes:
+            - ./src:/var/www
+        ports:
+            - "${APP_HOST_PORT}"
+        working_dir: /var/www
+
     nginx:
         image: nginx:alpine
         container_name: nginx-pokemons
@@ -8,7 +19,7 @@ services:
             - "${NGINX_HOST_PORT}"
         volumes:
             - ./src:/var/www
-            - ./nginx/conf.d/:/etc/nginx/conf.d/
+            - ./containers/nginx/conf.d/:/etc/nginx/conf.d/
         depends_on:
             - app
             - db
@@ -17,7 +28,7 @@ services:
         image: postgres
         container_name: postgres-pokemons
         volumes:
-            - ./postgresql/data:/var/lib/postgresql/data
+            - ./containers/postgresql/data:/var/lib/postgresql/data
         ports:
             - "${POSTGRES_HOST_PORT}"
         environment:
@@ -29,7 +40,7 @@ services:
         image: postgres
         container_name: postgres-pokemons-test
         volumes:
-            - ./postgresql/test:/var/lib/postgresql/data
+            - ./containers/postgresql/test:/var/lib/postgresql/data
         ports:
             - "${POSTGRES_TEST_HOST_PORT}"
         environment:
@@ -40,28 +51,6 @@ services:
             - "postgres"
             - "-c"
             - "port=5433"
-
-    app:
-        container_name: pokemons
-        build:
-            context: ./php
-            dockerfile: Dockerfile
-        volumes:
-            - ./src:/var/www
-        ports:
-            - "${APP_HOST_PORT}"
-        working_dir: /var/www
-
-    pgadmin:
-        image: dpage/pgadmin4
-        container_name: pg-admin-pokemons
-        ports:
-            - "${PGADMIN_HOST_PORT}"
-        depends_on:
-            - db
-        environment:
-            PGADMIN_DEFAULT_EMAIL: "${PGADMIN_DEFAULT_EMAIL}"
-            PGADMIN_DEFAULT_PASSWORD: "${PGADMIN_DEFAULT_PASSWORD}"
 
     elasticsearch:
         image: elasticsearch:7.17.17
@@ -77,6 +66,6 @@ services:
                 soft: -1
                 hard: -1
         volumes:
-            - ./elasticsearch/data:/usr/share/elasticsearch/data
+            - ./containers/elasticsearch/data:/usr/share/elasticsearch/data
         ports:
             - "${ELASTICSEARCH_HOST_PORT}"

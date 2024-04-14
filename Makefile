@@ -1,4 +1,4 @@
-project-init: cp-env build run composer-i db-migrate db-seed rules storage-link gen-key gen-swagger
+project-init: cp-env build run composer-i db-migrate db-seed storage-link gen-key gen-swagger
 
 cp-env: cp-docker-env cp-laravel-env cp-laravel-env-testing
 
@@ -10,9 +10,6 @@ run:
 
 down:
 	docker compose down
-
-rules:
-	sudo chmod 777 -R ./
 
 composer-i:
 	docker-compose exec app composer install
@@ -34,9 +31,6 @@ storage-link:
 
 gen-key:
 	docker-compose exec app php artisan key:generate
-
-rules:
-	sudo chmod 777 -R ./
 
 passport-install:
 	docker-compose exec app php artisan passport:install
