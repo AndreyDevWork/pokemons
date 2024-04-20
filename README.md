@@ -18,7 +18,7 @@
     make project-init
     ```
 
-3. install Passport, необходимо скопировать Client ID и Client secret от Password grant client в .env в фронтенд приложение https://github.com/AndreyDevWork/lk-typescript-quasar
+3. install Passport, необходимо скопировать Client ID и Client secret от Password grant client в .env в фронтенд приложение
 
     ```bash
     make passport-install
