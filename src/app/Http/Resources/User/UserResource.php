@@ -26,6 +26,16 @@ use OpenApi\Attributes as OA;
                 example: "slark@gmail.com",
                 nullable: true
             ),
+            "email_verified_at" => new OA\Property(
+                property: "email_verified_at",
+                type: "boolean",
+                example: "slark@gmail.com",
+            ),
+            "created_at" => new OA\Property(
+                property: "created_at",
+                type: "datetime",
+                example: "2020-01-01 00:00:00"
+            )
         ]
     )
 ]
