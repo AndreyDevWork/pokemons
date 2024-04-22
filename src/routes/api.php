@@ -18,9 +18,9 @@ Route::group(
     ["namespace" => "App\Http\Controllers\Auth", "prefix" => "auth"],
     function () {
         Route::post("/register", RegisterController::class);
-        Route::post("/send-email-verification", [
+        Route::post("/send-email-verification-message", [
             VerifyEmailController::class,
-            "sendEmailVerification",
+            "sendEmailVerificationMessage",
         ])->middleware("auth:api");
         Route::get("email/verify/{id}/{hash}", [
             VerifyEmailController::class,

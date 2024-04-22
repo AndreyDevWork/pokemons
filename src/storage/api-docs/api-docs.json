@@ -143,6 +143,38 @@
                 }
             }
         },
+        "/api/auth/send-email-verification-message": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "send email verification message",
+                "operationId": "sendEmailVerificationMessage",
+                "responses": {
+                    "200": {
+                        "description": "The user has successfully send email verification message.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Verification email sent"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/profile": {
             "get": {
                 "tags": [
