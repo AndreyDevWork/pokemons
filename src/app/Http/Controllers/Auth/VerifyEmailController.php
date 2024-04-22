@@ -8,10 +8,35 @@ use Illuminate\Auth\Events\Verified;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Redirect;
+use OpenApi\Attributes as OA;
 
+#[
+    OA\Post(
+        path: "/api/auth/send-email-verification-message",
+        operationId: "sendEmailVerificationMessage",
+        summary: "send email verification message",
+        security: [["bearerAuth" => []]],
+        tags: ["Auth"],
+        responses: [
+            new OA\Response(
+                response: 200,
+                description: "The user has successfully send email verification message.",
+                content: new OA\JsonContent(
+                    properties: [
+                        "message" => new OA\Property(
+                            property: "message",
+                            type: "string",
+                            example: "Verification email sent"
+                        ),
+                    ]
+                )
+            ),
+        ]
+    )
+]
 class VerifyEmailController extends Controller
 {
-    public function sendEmailVerification(Request $request)
+    public function sendEmailVerificationMessage(Request $request)
     {
         if ($request->user()->hasVerifiedEmail()) {
             return response()->json(
