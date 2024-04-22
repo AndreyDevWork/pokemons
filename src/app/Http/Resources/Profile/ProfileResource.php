@@ -13,7 +13,7 @@ use OpenApi\Attributes as OA;
         properties: [
             "date_of_birth" => new OA\Property(
                 property: "date_of_birth",
-                type: "string",
+                type: 'datetime',
                 example: "2001-02-14"
             ),
             "firstname" => new OA\Property(
@@ -49,8 +49,6 @@ class ProfileResource extends JsonResource
             "firstname" => $this->firstname,
             "lastname" => $this->lastname,
             "role" => $this->role->role,
-            "created_at" => $this->updated_at->format("Y-m-dTH:i:s"),
-            "updated_at" => $this->updated_at->format("Y-m-dTH:i:s"),
             "user" => new UserResource($this->user),
         ];
     }

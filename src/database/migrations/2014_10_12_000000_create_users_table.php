@@ -14,7 +14,7 @@ return new class () extends Migration {
             $table->id();
             $table->string("username")->unique();
             $table->string("email")->unique()->nullable();
-            $table->timestamp("email_verified_at")->nullable();
+            $table->timestamp("email_verified_at")->default(false);
             $table->string("password");
             $table->timestamps();
             $table->softDeletes();

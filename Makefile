@@ -5,7 +5,7 @@ cp-env: cp-docker-env cp-laravel-env cp-laravel-env-testing
 build:
 	docker-compose up -d --build
 
-run:
+up:
 	docker compose up -d
 
 down:
